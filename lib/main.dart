@@ -41,9 +41,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Forms Date & Time',
+            ElevatedButton(
+                child: const Text("Open DatePicker", style: TextStyle(color: Colors.white),),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  elevation: MaterialStateProperty.all(8)
+                ),
+                onPressed: null,
             ),
+            const Padding(padding: EdgeInsets.only(bottom: 20)),
+            const Text("Picked date is: "),
+            const Padding(padding: EdgeInsets.only(bottom: 20)),
           ],
         ),
       ),
