@@ -68,7 +68,16 @@ class _MyHomePageState extends State<MyHomePage> {
             const Padding(padding: EdgeInsets.only(bottom: 20)),
             const Text("Picked date is: "),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
-            Text(_date == null ? "No picked date!" : _date.toString()),
+            Text(
+                _date == null ? "No picked date!" : '${_date.day}/${_date.month}/${_date.year}',
+              style: _date == null
+                  ? const TextStyle(color: Colors.blue)
+                  : const TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25
+              ),
+            ),
           ],
         ),
       ),
