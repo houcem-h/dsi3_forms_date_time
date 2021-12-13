@@ -30,6 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  var _date = null;
   
   Future<void> _dateSelection() async {
     DateTime? _pickedDate = await showDatePicker(
@@ -38,6 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
         firstDate: DateTime(1900),
         lastDate: DateTime(2030)
     );
+    if(_pickedDate != null) {
+      setState(() {
+        _date = _pickedDate;
+      });
+    }
   }
 
   @override
@@ -61,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Padding(padding: EdgeInsets.only(bottom: 20)),
             const Text("Picked date is: "),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
+            Text(_date == null ? "No picked date!" : _date.toString()),
           ],
         ),
       ),
