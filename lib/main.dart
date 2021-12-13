@@ -40,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   var _date = null;
+  var _time = null;
   
   Future<void> _dateSelection() async {
     DateTime? _pickedDate = await showDatePicker(
@@ -51,6 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
     if(_pickedDate != null) {
       setState(() {
         _date = _pickedDate;
+      });
+    }
+  }
+
+  Future<void> _timeSelection() async {
+    TimeOfDay? _pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now()
+    );
+    if(_pickedTime != null) {
+      setState(() {
+        _time = _pickedTime;
       });
     }
   }
@@ -73,6 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onPressed: _dateSelection,
             ),
+            ElevatedButton(
+              child: const Text("Open TimePicker", style: TextStyle(color: Colors.white)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  elevation: MaterialStateProperty.all(8)
+              ),
+              onPressed: _timeSelection,
+            ),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
             const Text("Picked date is: "),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
@@ -84,6 +105,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
                 fontSize: 25
+              ),
+            ),
+            const Padding(padding: EdgeInsets.only(bottom: 20)),
+            const Text("Picked time is: "),
+            const Padding(padding: EdgeInsets.only(bottom: 10)),
+            Text(
+              _time == null ? "No time chosen!" : '${_time.format(context)}',
+              style: _time == null
+                  ? const TextStyle(color: Colors.blue)
+                  : const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25
               ),
             ),
           ],
