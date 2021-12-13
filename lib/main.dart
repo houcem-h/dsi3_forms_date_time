@@ -30,6 +30,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  Future<void> _dateSelection() async {
+    DateTime? _pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2030)
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                   elevation: MaterialStateProperty.all(8)
                 ),
-                onPressed: null,
+                onPressed: _dateSelection,
             ),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
             const Text("Picked date is: "),
